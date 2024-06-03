@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between mb-4">
                         <h2 class="text-xl font-semibold">User List</h2>
-                        <a href="#"><x-primary-button class="items-center justify-center text-white font-bold py-2 px-4 rounded">
+                        <a href="{{ route('add_user') }}"><x-primary-button class="items-center justify-center text-white font-bold py-2 px-4 rounded">
                                 {{ __('Add User') }}
                             </x-primary-button></a>
                     </div>
