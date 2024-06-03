@@ -23,7 +23,6 @@
                                 <th class="px-4 py-2">{{ __('Email') }}</th>
                                 <th class="px-4 py-2">{{ __('Status') }}</th>
                                 <th class="px-4 py-2">{{ __('Access') }}</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -31,11 +30,16 @@
                             @php
                             $userAccesses = $accesses->where('user_id', $user->id);
                             @endphp
-                            <tr>
+                            <tr class="border-b border-gray-200">
                                 <td class="px-4 py-2" rowspan="{{ $userAccesses->count() + 1 }}">
                                     <div class="flex items-center justify-center">
-                                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>||
-                                        <a href="#" class="text-red-600 hover:text-red-900 ml-2">Delete</a>
+                                        <div class="bg-indigo-100 rounded-lg p-2">
+                                            <a href="#" class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-edit"></i></a>
+                                        </div>
+                                        <div class="mx-2"></div>
+                                        <div class="bg-red-100 rounded-lg p-2">
+                                            <a href="#" class="text-red-600 hover:text-red-900"><i class="fas fa-trash-alt"></i></a>
+                                        </div>
                                     </div>
                                 </td>
                                 <td class="px-4 py-2" rowspan="{{ $userAccesses->count() + 1 }}">
@@ -49,7 +53,7 @@
                                 </td>
                             </tr>
                             @foreach($userAccesses as $access)
-                            <tr>
+                            <tr class="border-b border-gray-200">
                                 <td class="px-4 py-2">
                                     <div class="flex items-center justify-center">{{ $access->access }}</div>
                                 </td>
