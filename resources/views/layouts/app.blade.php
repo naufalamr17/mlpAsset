@@ -67,7 +67,7 @@
                         </x-nav-link>
                     </li>
                     <li class="mt-4">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard!!')">
+                        <x-nav-link :href="route('user_center')" :active="request()->routeIs('user_center')">
                             {{ __('User') }}
                         </x-nav-link>
                     </li>
