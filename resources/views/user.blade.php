@@ -18,34 +18,44 @@
                     <table class="w-full table-auto">
                         <thead>
                             <tr class="border-b border-gray-200">
+                                <th class="px-4 py-2">{{ __('Action') }}</th>
                                 <th class="px-4 py-2">{{ __('Name') }}</th>
                                 <th class="px-4 py-2">{{ __('Email') }}</th>
-                                <th class="px-4 py-2">{{ __('Access') }}</th>
                                 <th class="px-4 py-2">{{ __('Status') }}</th>
-                                <th class="px-4 py-2">{{ __('Action') }}</th>
+                                <th class="px-4 py-2">{{ __('Access') }}</th>
+
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($users as $user)
+                            @php
+                            $userAccesses = $accesses->where('user_id', $user->id);
+                            @endphp
                             <tr>
-                                <td class="px-4 py-2 border-t border-gray-200">
-                                    <div class="flex items-center justify-center">John Doe</div>
-                                </td>
-                                <td class="px-4 py-2 border-t border-gray-200">
-                                    <div class="flex items-center justify-center">johndoe@example.com</div>
-                                </td>
-                                <td class="px-4 py-2 border-t border-gray-200">
-                                    <div class="flex items-center justify-center">Admin</div>
-                                </td>
-                                <td class="px-4 py-2 border-t border-gray-200">
-                                    <div class="flex items-center justify-center">Active</div>
-                                </td>
-                                <td class="px-4 py-2 border-t border-gray-200">
+                                <td class="px-4 py-2" rowspan="{{ $userAccesses->count() + 1 }}">
                                     <div class="flex items-center justify-center">
                                         <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>||
                                         <a href="#" class="text-red-600 hover:text-red-900 ml-2">Delete</a>
                                     </div>
                                 </td>
+                                <td class="px-4 py-2" rowspan="{{ $userAccesses->count() + 1 }}">
+                                    <div class="flex items-center justify-center">{{ $user->name }}</div>
+                                </td>
+                                <td class="px-4 py-2" rowspan="{{ $userAccesses->count() + 1 }}">
+                                    <div class="flex items-center justify-center">{{ $user->email }}</div>
+                                </td>
+                                <td class="px-4 py-2" rowspan="{{ $userAccesses->count() + 1 }}">
+                                    <div class="flex items-center justify-center">{{ $user->status }}</div>
+                                </td>
                             </tr>
+                            @foreach($userAccesses as $access)
+                            <tr>
+                                <td class="px-4 py-2">
+                                    <div class="flex items-center justify-center">{{ $access->access }}</div>
+                                </td>
+                            </tr>
+                            @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
