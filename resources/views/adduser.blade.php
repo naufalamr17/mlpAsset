@@ -71,7 +71,12 @@
                                 </div>
                                 <div id="access-container" class="mt-2 space-y-4">
                                     <div class="flex items-center">
-                                        <x-text-input id="access" class="block mt-1 mr-1 w-full" type="text" name="access[]" required />
+                                        <select name="access[]" class="block mt-1 mr-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                                            <option value="" disabled selected>Select Access</option>
+                                            <option value="Asset Management">Asset Management</option>
+                                            <option value="IT Asset Management">IT Asset Management</option>
+                                            <option value="ATK Management">ATK Management</option>
+                                        </select>
                                         <x-input-error :messages="$errors->get('access')" class="mt-2" />
                                         <button type="button" class="ml-2 bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded remove-access">Remove</button>
                                     </div>
@@ -96,18 +101,40 @@
             var div = document.createElement('div');
             div.className = 'flex items-center mt-4';
 
-            var input = document.createElement('input');
-            input.type = 'text';
-            input.name = 'access[]';
-            input.className = 'block mt-1 mr-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm';
-            input.required = true;
+            var select = document.createElement('select');
+            select.name = 'access[]';
+            select.className = 'block mt-1 mr-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm';
+            select.required = true;
+
+            var optionDefault = document.createElement('option');
+            optionDefault.value = '';
+            optionDefault.disabled = true;
+            optionDefault.selected = true;
+            optionDefault.textContent = 'Select Access';
+
+            var option1 = document.createElement('option');
+            option1.value = 'Asset Management';
+            option1.textContent = 'Asset Management';
+
+            var option2 = document.createElement('option');
+            option2.value = 'IT Asset Management';
+            option2.textContent = 'IT Asset Management';
+
+            var option3 = document.createElement('option');
+            option3.value = 'ATK Management';
+            option3.textContent = 'ATK Management';
+
+            select.appendChild(optionDefault);
+            select.appendChild(option1);
+            select.appendChild(option2);
+            select.appendChild(option3);
 
             var button = document.createElement('button');
             button.type = 'button';
             button.className = 'ml-2 bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded remove-access';
             button.textContent = 'Remove';
 
-            div.appendChild(input);
+            div.appendChild(select);
             div.appendChild(button);
             container.appendChild(div);
         });
