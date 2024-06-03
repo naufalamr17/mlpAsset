@@ -17,34 +17,44 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100 flex"> <!-- Menggunakan flexbox untuk tata letak -->
-        <!-- Sidebar -->
-        <aside class="bg-white w-1/5 min-w-0 max-w-full"> <!-- Menetapkan lebar sidebar -->
-            <!-- Isi sidebar di sini -->
-            <!-- Contoh: -->
+    <div class="min-h-screen bg-gray-100 flex">
+        <aside class="bg-white w-1/5 min-w-0 max-w-full">
             <div class="p-6">
                 <div class="flex items-center">
-                    <!-- Gambar -->
                     <img src="{{ asset('img/mlpLogo.jpg') }}" alt="Application Logo" class="w-20 h-20 fill-current text-gray-500" />
 
-                    <!-- Teks -->
                     <div class="ml-4">
                         <h1 class="text-xl font-semibold mb-1">MLP</h1>
-                        <!-- Teks tambahan, jika ada -->
                     </div>
                 </div>
-
-                <ul class="mt-4">
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Menu 2</a></li>
-                    <li><a href="#">Menu 3</a></li>
-                    <!-- Tambahkan menu sesuai kebutuhan -->
+                <br>
+                <hr>
+                <ul class="mt-4 space-y-4">
+                    <li class="mt-4">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    </li>
+                    <li class="mt-4">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard!!')">
+                            {{ __('Inventory Asset') }}
+                        </x-nav-link>
+                    </li>
+                    <li class="mt-4">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard!!')">
+                            {{ __('Report') }}
+                        </x-nav-link>
+                    </li>
+                    <li class="mt-4">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard!!')">
+                            {{ __('User') }}
+                        </x-nav-link>
+                    </li>
                 </ul>
             </div>
         </aside>
 
-        <div class="flex-1"> <!-- Menetapkan flex-grow untuk konten utama agar mengisi sisa ruang -->
-            <!-- Page Heading -->
+        <div class="flex-1">
             @if (isset($header))
             <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -53,8 +63,7 @@
             </header>
             @endif
 
-            <!-- Page Content -->
-            <main class="p-4"> <!-- Memberikan padding agar konten tidak terlalu dekat dengan sisi -->
+            <main class="p-4">
                 {{ $slot }}
             </main>
         </div>
