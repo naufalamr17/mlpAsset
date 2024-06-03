@@ -84,7 +84,7 @@
             </header>
             @endif
 
-            <main class="p-4">
+            <main class="p-1">
                 {{ $slot }}
             </main>
         </div>
