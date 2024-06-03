@@ -18,4 +18,11 @@ class AccessController extends Controller
 
         return view('user', compact('users', 'accesses'));
     }
+
+    public function create()
+    {
+        
+
+        return view('adduser');
+    }
 }
