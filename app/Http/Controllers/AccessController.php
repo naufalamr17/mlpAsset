@@ -56,4 +56,35 @@ class AccessController extends Controller
 
         return redirect()->back()->with('success', 'User deleted successfully.');
     }
+
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('edituser', compact('user'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->status = $request->status;
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+
+        $userId = $user->id;
+        $user->accesses()->delete();
+        foreach ($request->access as $access) {
+            // $user->accesses()->create(['type' => $access]);
+            $acc = access::create([
+                'user_id' => $userId,
+                'access' => $access,
+            ]);
+            // dd($user->accesses());
+        }
+
+        return redirect()->route('user_center')->with('success', 'User updated successfully.');
+    }
 }

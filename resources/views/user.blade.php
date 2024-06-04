@@ -49,7 +49,7 @@
                                 <td class="px-4 py-2" rowspan="{{ $userAccesses->count() + 1 }}">
                                     <div class="flex items-center justify-center">
                                         <div class="bg-indigo-100 rounded-lg p-2">
-                                            <a href="#" class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('edit_user', ['id' => $user->id]) }}" class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-edit"></i></a>
                                         </div>
                                         <div class="mx-2"></div>
                                         <form action="{{ route('destroy_user', ['id' => $user->id]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
