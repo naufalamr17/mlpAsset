@@ -20,8 +20,14 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'status',
         'password',
     ];
+
+    public function accesses()
+    {
+        return $this->hasMany(access::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

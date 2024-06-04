@@ -5,27 +5,26 @@
         </h2>
     </x-slot>
 
-    @if ($errors->any())
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-
-    @if(session('success'))
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-        {{ session('success') }}
-    </div>
-    @endif
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form method="POST" action="{{ route('add_user') }}">
+                    @if ($errors->any())
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div><br>
+                    @endif
+
+                    @if(session('success'))
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                        {{ session('success') }}
+                    </div><br>
+                    @endif
+                    <form method="POST" action="{{ route('store_user') }}">
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="flex flex-col gap-6">
