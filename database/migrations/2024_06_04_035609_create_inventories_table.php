@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('acquisition_date'); // Tanggal Perolehan
             $table->date('disposal_date')->nullable(); // Tanggal Penghapusan
             $table->integer('useful_life')->nullable(); // Umur Ekonomis (tahun)
-            $table->integer('acquisition_value'); // Nilai Perolehan
+            $table->bigInteger('acquisition_value'); // Nilai Perolehan
             $table->enum('status', ['Aktif', 'Nonaktif', 'Pindah'])->default('Aktif');
             $table->timestamps();
         });
