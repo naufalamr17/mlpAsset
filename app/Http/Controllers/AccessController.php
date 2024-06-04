@@ -48,4 +48,12 @@ class AccessController extends Controller
 
         return redirect()->back()->with('success', 'User created successfully.');
     }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->back()->with('success', 'User deleted successfully.');
+    }
 }
