@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/users/{id}', [AccessController::class, 'update'])->name('update_user');
 
     Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory');
+    Route::post('/store_inventory', [InventoryController::class, 'store'])->name('store_inventory');
 });
 
 require __DIR__ . '/auth.php';

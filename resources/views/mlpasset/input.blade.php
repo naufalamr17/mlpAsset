@@ -9,44 +9,69 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form method="POST" action="{{ route('store_user') }}">
+                    @if ($errors->any())
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div><br>
+                    @endif
+
+                    @if(session('success'))
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                        {{ session('success') }}
+                    </div><br>
+                    @endif
+                    <form method="POST" action="{{ route('store_inventory') }}">
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="flex flex-col gap-6">
                                 <div>
-                                    <x-input-label for="name" :value="__('Kode Asset Lama')" />
-                                    <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-                                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                    <x-input-label for="old_asset_code" :value="__('Kode Asset Lama')" />
+                                    <x-text-input id="old_asset_code" class="block mt-1 w-full" type="text" name="old_asset_code" :value="old('old_asset_code')" required autofocus />
+                                    <x-input-error :messages="$errors->get('old_asset_code')" class="mt-2" />
                                 </div>
 
                                 <div>
-                                    <x-input-label for="email" :value="__('Location')" />
-                                    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                                </div>
-
-                                <div>
-                                    <x-input-label for="status" :value="__('Kategori')" />
-                                    <select id="status" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="status" required>
-                                        <option value="" selected disabled>Select Status</option>
-                                        <option value="Administrator">Administrator</option>
-                                        <option value="Admin">Admin</option>
-                                        <option value="Modified">Modified</option>
-                                        <option value="Viewers">Viewers</option>
+                                    <x-input-label for="location" :value="__('Location')" />
+                                    <select id="location" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="location" required>
+                                        <option value="" selected disabled>Select Location</option>
+                                        <option value="Head Office">Head Office</option>
+                                        <option value="Office Molore">Office Molore</option>
+                                        <option value="Site Molore">Site Molore</option>
                                     </select>
-                                    <x-input-error :messages="$errors->get('status')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('location')" class="mt-2" />
                                 </div>
 
                                 <div>
-                                    <x-input-label for="password" :value="__('Asset Position')" />
-                                    <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                    <x-input-label for="asset_category" :value="__('Kategori')" />
+                                    <select id="asset_category" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="asset_category" required>
+                                        <option value="" selected disabled>Select Category</option>
+                                        <option value="Kendaraan">Kendaraan</option>
+                                        <option value="Peralatan">Peralatan</option>
+                                        <option value="Perlengkapan">Perlengkapan</option>
+                                    </select>
+                                    <x-input-error :messages="$errors->get('asset_category')" class="mt-2" />
+                                </div>
+
+                                <div>
+                                    <x-input-label for="asset_position_dept" :value="__('Asset Position')" />
+                                    <x-text-input id="asset_position_dept" class="block mt-1 w-full" type="text" name="asset_position_dept" required />
+                                    <x-input-error :messages="$errors->get('asset_position_dept')" class="mt-2" />
+                                </div>
+
+                                <div>
+                                    <x-input-label for="asset_type" :value="__('Jenis')" />
+                                    <x-text-input id="asset_type" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="asset_type" required>{{ old('asset_type') }}</x-tect-input>
+                                        <x-input-error :messages="$errors->get('asset_type')" class="mt-2" />
                                 </div>
 
                                 <div>
                                     <x-input-label for="description" :value="__('Deskripsi')" />
-                                    <textarea id="description" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="description" required>{{ old('description') }}</textarea>
-                                    <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                                    <x-text-input id="description" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="description" required>{{ old('description') }}</x-tect-input>
+                                        <x-input-error :messages="$errors->get('description')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="flex flex-col gap-6">
@@ -64,7 +89,7 @@
 
                                 <div>
                                     <x-input-label for="disposal_date" :value="__('Tanggal Penghapusan')" />
-                                    <input type="date" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="disposal_date" class="block mt-1 w-full" name="disposal_date" :value="old('disposal_date')" required />
+                                    <input type="date" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="disposal_date" class="block mt-1 w-full" name="disposal_date" :value="old('disposal_date')" />
                                     <x-input-error :messages="$errors->get('disposal_date')" class="mt-2" />
                                 </div>
 

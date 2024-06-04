@@ -12,7 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('inventories', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')->primary();
+            $table->string('old_asset_code'); // Kode Aset Lama
+            $table->string('pic_dept'); // PIC DEPT
+            $table->string('location'); // LOCATION
+            $table->string('asset_category'); // Kategori Aset
+            $table->string('asset_position_dept'); // ASSET POSITION (DEPT)
+            $table->string('asset_type'); // Jenis
+            $table->text('description'); // Description
+            $table->string('serial_number'); // Serial Number
+            $table->date('acquisition_date'); // Tanggal Perolehan
+            $table->date('disposal_date')->nullable(); // Tanggal Penghapusan
+            $table->integer('useful_life')->nullable(); // Umur Ekonomis (tahun)
+            $table->integer('acquisition_value'); // Nilai Perolehan
+            $table->enum('status', ['Aktif', 'Nonaktif', 'Pindah'])->default('Aktif');
             $table->timestamps();
         });
     }
