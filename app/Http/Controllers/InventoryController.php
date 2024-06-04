@@ -9,6 +9,11 @@ class InventoryController extends Controller
 {
     public function index()
     {
+        return view('mlpasset.list');
+    }
+
+    public function addinventory()
+    {
         return view('mlpasset.input');
     }
 
