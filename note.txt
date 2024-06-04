@@ -1,2 +1,5 @@
->2500000 FG
+> 2500000 FG
 <= 2500000 GA
+====
+tglserahterima	user	Dept	Remarks
+4 kolom diatas dibuat foreign key

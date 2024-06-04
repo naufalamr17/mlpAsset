@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccessController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/destroy_user/{id}', [AccessController::class, 'destroy'])->name('destroy_user');
     Route::get('/users/{id}/edit', [AccessController::class, 'edit'])->name('edit_user');
     Route::put('/users/{id}', [AccessController::class, 'update'])->name('update_user');
+
+    Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory');
 });
 
 require __DIR__ . '/auth.php';
