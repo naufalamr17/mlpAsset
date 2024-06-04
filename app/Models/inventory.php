@@ -10,7 +10,7 @@ class inventory extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
+        'asset_code',
         'old_asset_code',
         'pic_dept',
         'location',

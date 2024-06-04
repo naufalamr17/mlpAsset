@@ -9,7 +9,9 @@ class InventoryController extends Controller
 {
     public function index()
     {
-        return view('mlpasset.list');
+        $inventory = inventory::all();
+        // dd($inventory);
+        return view('mlpasset.list', compact('inventory'));
     }
 
     public function addinventory()
@@ -147,7 +149,7 @@ class InventoryController extends Controller
 
         $id = $id1 . ' ' . $id2 . '-' . $id3 . '-' . $id4;
 
-        $ids = inventory::where('id', 'LIKE', "%$id%")->get();
+        $ids = inventory::where('asset_code', 'LIKE', "%$id%")->get();
 
         if ($ids != null) {
             $dataCount = 0;
@@ -164,7 +166,7 @@ class InventoryController extends Controller
 
         // Menambahkan ID dan PIC Dept ke dalam $validatedData
         $validatedData['pic_dept'] = $pic_dept;
-        $validatedData['id'] = $id;
+        $validatedData['asset_code'] = $id;
 
         // Simpan data aset ke dalam database
         $asset = Inventory::create($validatedData);

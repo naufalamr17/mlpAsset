@@ -26,7 +26,7 @@
                     @endif
                     <div class="flex justify-between mb-4">
                         <h2 class="text-xl font-semibold">Inventory List</h2>
-                        <a href="{{ route('add_user') }}"><x-primary-button class="items-center justify-center text-white font-bold py-2 px-4 rounded">
+                        <a href="{{ route('add_inventory') }}"><x-primary-button class="items-center justify-center text-white font-bold py-2 px-4 rounded">
                                 {{ __('Add Inventory') }}
                             </x-primary-button></a>
                     </div>
@@ -47,6 +47,27 @@
                                 <th class="px-4 py-2">{{ __('Action') }}</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @foreach($inventory as $inv)
+                            <tr class="border-b border-gray-200 text-center text-xs">
+                                <?php
+                                // dd($inv);
+                                ?>
+                                <td>{{ $inv->asset_code }}</td>
+                                <td>{{ $inv->old_asset_code }}</td>
+                                <td>{{ $inv->asset_category }}</td>
+                                <td>{{ $inv->asset_position_dept }}</td>
+                                <td>{{ $inv->asset_type }}</td>
+                                <td>{{ $inv->description }}</td>
+                                <td>{{ $inv->serial_number }}</td>
+                                <td>{{ $inv->acquisition_date }}</td>
+                                <td>{{ $inv->acquisition_value }}</td>
+                                <td>{{ $inv->location }}</td>
+                                <td>{{ $inv->status }}</td>
+                                <td>test</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>

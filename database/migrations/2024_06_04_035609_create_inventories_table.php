@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('inventories', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->id();
+            $table->string('asset_code'); // Kode Aset
             $table->string('old_asset_code'); // Kode Aset Lama
             $table->string('pic_dept'); // PIC DEPT
             $table->string('location'); // LOCATION
