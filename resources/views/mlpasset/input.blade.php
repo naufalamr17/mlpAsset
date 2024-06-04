@@ -39,7 +39,7 @@
                                     <select id="location" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="location" required>
                                         <option value="" selected disabled>Select Location</option>
                                         <option value="Head Office">Head Office</option>
-                                        <option value="Office Molore">Office Molore</option>
+                                        <option value="Office Kendari">Office Kendari</option>
                                         <option value="Site Molore">Site Molore</option>
                                     </select>
                                     <x-input-error :messages="$errors->get('location')" class="mt-2" />
@@ -50,6 +50,10 @@
                                     <select id="asset_category" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="asset_category" required>
                                         <option value="" selected disabled>Select Category</option>
                                         <option value="Kendaraan">Kendaraan</option>
+                                        <option value="Mesin">Mesin</option>
+                                        <option value="Alat Berat">Alat Berat</option>
+                                        <option value="Alat Lab">Alat Lab</option>
+                                        <option value="Alat Preparasi">Alat Preparasi</option>
                                         <option value="Peralatan">Peralatan</option>
                                         <option value="Perlengkapan">Perlengkapan</option>
                                     </select>
@@ -64,8 +68,45 @@
 
                                 <div>
                                     <x-input-label for="asset_type" :value="__('Jenis')" />
-                                    <x-text-input id="asset_type" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="asset_type" required>{{ old('asset_type') }}</x-tect-input>
-                                        <x-input-error :messages="$errors->get('asset_type')" class="mt-2" />
+                                    <input list="asset_types" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" id="asset_type" name="asset_type" required>
+                                    <datalist id="asset_types">
+                                        <option value="LV">LV (ID: 001)</option>
+                                        <option value="Mobil Tangki">Mobil Tangki (ID: 002)</option>
+                                        <option value="Dump Truck">Dump Truck (ID: 003)</option>
+                                        <option value="Elf">Elf (ID: 004)</option>
+                                        <option value="Mobil Operasional">Mobil Operasional (ID: 005)</option>
+                                        <option value="Motor Operasional">Motor Operasional (ID: 006)</option>
+                                        <option value="Speed Boat">Speed Boat (ID: 007)</option>
+                                        <option value="Genset">Genset (ID: 008)</option>
+                                        <option value="Compressor">Compressor (ID: 009)</option>
+                                        <option value="Crusher Big">Crusher Big (ID: 010)</option>
+                                        <option value="Excavator">Excavator (ID: 011)</option>
+                                        <option value="Ramp Door">Ramp Door (ID: 012)</option>
+                                        <option value="Oven">Oven (ID: 013)</option>
+                                        <option value="Jaw Crusher">Jaw Crusher (ID: 014)</option>
+                                        <option value="Pul Vulizer">Pul Vulizer (ID: 015)</option>
+                                        <option value="Mixer Type C">Mixer Type C (ID: 016)</option>
+                                        <option value="Top Grinder">Top Grinder (ID: 017)</option>
+                                        <option value="Roll Crusher">Roll Crusher (ID: 018)</option>
+                                        <option value="Sieve Shaker Mesin">Sieve Shaker Mesin (ID: 019)</option>
+                                        <option value="Epsilon">Epsilon (ID: 020)</option>
+                                        <option value="Mesin Press">Mesin Press (ID: 021)</option>
+                                        <option value="Laptop/PC">Laptop/PC (ID: 022)</option>
+                                        <option value="Printer/Scanner">Printer/Scanner (ID: 023)</option>
+                                        <option value="UPS">UPS (ID: 024)</option>
+                                        <option value="GPS">GPS (ID: 025)</option>
+                                        <option value="Alat Komunikasi">Alat Komunikasi (ID: 026)</option>
+                                        <option value="Perangkat Jaringan">Perangkat Jaringan (ID: 027)</option>
+                                        <option value="Brankas">Brankas (ID: 028)</option>
+                                        <option value="Alat Kesehatan">Alat Kesehatan (ID: 029)</option>
+                                        <option value="Meja">Meja (ID: 030)</option>
+                                        <option value="Kursi">Kursi (ID: 031)</option>
+                                        <option value="Lemari">Lemari (ID: 032)</option>
+                                        <option value="Elektronik">Elektronik (ID: 033)</option>
+                                        <option value="Tempat Tidur">Tempat Tidur (ID: 034)</option>
+                                        <option value="Lain - Lain">Lain - Lain (ID: 050)</option>
+                                    </datalist>
+                                    <x-input-error :messages="$errors->get('asset_type')" class="mt-2" />
                                 </div>
 
                                 <div>
@@ -87,11 +128,11 @@
                                     <x-input-error :messages="$errors->get('acquisition_date')" class="mt-2" />
                                 </div>
 
-                                <div>
+                                <!-- <div>
                                     <x-input-label for="disposal_date" :value="__('Tanggal Penghapusan')" />
                                     <input type="date" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="disposal_date" class="block mt-1 w-full" name="disposal_date" :value="old('disposal_date')" />
                                     <x-input-error :messages="$errors->get('disposal_date')" class="mt-2" />
-                                </div>
+                                </div> -->
 
                                 <div>
                                     <x-input-label for="useful_life" :value="__('Umur ekonomis (Tahun)')" />
