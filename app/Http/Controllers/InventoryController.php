@@ -14,6 +14,7 @@ class InventoryController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $validatedData = $request->validate([
             'old_asset_code' => 'required|string',
             'location' => 'required|string',
@@ -139,10 +140,22 @@ class InventoryController extends Controller
         $iteration = $lastAsset ? $lastAsset->id + 1 : 1; // Jika tidak ada data, mulai dari 1
         $iteration = str_pad($iteration, 4, '0', STR_PAD_LEFT); // Memastikan 4 digit dengan padding
 
-        // dd($lastAsset);
+        $id = $id1 . ' ' . $id2 . '-' . $id3 . '-' . $id4;
 
-        // Menggabungkan ID sesuai format yang diinginkan
-        $id = $id1 . ' ' . $id2 . '-' . $id3 . '-' . $id4 . '-' . $iteration;
+        $ids = inventory::where('id', 'LIKE', "%$id%")->get();
+
+        if ($ids != null) {
+            $dataCount = 0;
+
+            foreach ($ids as $inventory) {
+                $dataCount++;
+            }
+            $iteration = str_pad($dataCount + 1, 4, '0', STR_PAD_LEFT);
+            // dd($iteration);
+            $id = $id1 . ' ' . $id2 . '-' . $id3 . '-' . $id4 . '-' . $iteration;
+        } else {
+            $id = $id1 . ' ' . $id2 . '-' . $id3 . '-' . $id4 . '-' . $iteration;
+        }
 
         // Menambahkan ID dan PIC Dept ke dalam $validatedData
         $validatedData['pic_dept'] = $pic_dept;
@@ -151,12 +164,6 @@ class InventoryController extends Controller
         // Simpan data aset ke dalam database
         $asset = Inventory::create($validatedData);
 
-        // dd($validatedData);
-
-
-        // Simpan data aset ke dalam database
-        $asset = Inventory::create($validatedData);
-
-        return redirect()->back()->with('success', 'Inventory created successfully.');
+        return redirect()->route('inventory')->with('success', 'Inventory created successfully.');
     }
 }
