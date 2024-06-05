@@ -184,4 +184,34 @@ class InventoryController extends Controller
 
         return redirect()->back()->with('success', 'Inventory deleted successfully.');
     }
+
+    public function edit($id)
+    {
+        $asset = inventory::findOrFail($id);
+        return view('mlpasset.edit', compact('asset'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'old_asset_code' => 'required',
+            'location' => 'required',
+            'asset_category' => 'required',
+            'asset_position_dept' => 'required',
+            'asset_type' => 'required',
+            'description' => 'required',
+            'serial_number' => 'required',
+            'acquisition_date' => 'required|date',
+            'useful_life' => 'required|numeric',
+            'acquisition_value' => 'required|numeric',
+            'hand_over_date' => 'nullable|date',
+            'user' => 'nullable',
+            'dept' => 'nullable',
+        ]);
+
+        $asset = inventory::findOrFail($id);
+        $asset->update($request->all());
+
+        return redirect()->route('inventory')->with('success', 'Asset updated successfully.');
+    }
 }
