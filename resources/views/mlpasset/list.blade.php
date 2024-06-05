@@ -5,6 +5,28 @@
         </h2>
     </x-slot>
 
+    <!-- Include DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+    <!-- Custom CSS to make the DataTable smaller -->
+    <style>
+        #inventoryTable_wrapper .dataTables_length,
+        #inventoryTable_wrapper .dataTables_filter,
+        #inventoryTable_wrapper .dataTables_info,
+        #inventoryTable_wrapper .dataTables_paginate {
+            font-size: 0.75rem;
+        }
+
+        #inventoryTable {
+            font-size: 0.75rem;
+        }
+
+        #inventoryTable th,
+        #inventoryTable td {
+            padding: 4px 8px;
+        }
+    </style>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -24,13 +46,14 @@
                         {{ session('success') }}
                     </div><br>
                     @endif
-                    <div class="flex justify-between mb-4">
-                        <h2 class="text-xl font-semibold">Inventory Asset Management</h2>
-                        <a href="{{ route('add_inventory') }}"><x-primary-button class="items-center justify-center text-white font-bold py-2 px-4 rounded">
+                    <div class="flex justify-between mb-4"><input type="text" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="searchbox" id="searchbox" placeholder="Search..." autofocus>
+                        <a href="{{ route('add_inventory') }}">
+                            <x-primary-button class="items-center justify-center text-white font-bold py-2 px-4 rounded">
                                 {{ __('Add Asset') }}
-                            </x-primary-button></a>
+                            </x-primary-button>
+                        </a>
                     </div>
-                    <table class="w-full table-auto">
+                    <table id="inventoryTable" class="w-full table-auto">
                         <thead>
                             <tr class="border-b border-gray-200">
                                 <th class="px-4 py-2">{{ __('Kode Asset') }}</th>
@@ -51,9 +74,6 @@
                         <tbody>
                             @foreach($inventory as $inv)
                             <tr class="border-b border-gray-200 text-center text-xs">
-                                <?php
-                                // dd($inv);
-                                ?>
                                 <td>{{ $inv->asset_code }}</td>
                                 <td>{{ $inv->old_asset_code }}</td>
                                 <td>{{ $inv->asset_category }}</td>
@@ -93,4 +113,32 @@
             </div>
         </div>
     </div>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <!-- Initialize DataTable -->
+    <script>
+        $(document).ready(function() {
+            var table = $('#inventoryTable').DataTable({
+                "pageLength": 50,
+                "columnDefs": [{
+                        "orderable": true,
+                        "targets": 7
+                    }, // Enable ordering on the 8th column (index 7)
+                    {
+                        "orderable": false,
+                        "targets": '_all'
+                    } // Disable ordering on all other columns
+                ],
+                "dom": '<"top">rt<"bottom"ip><"clear">',
+            });
+
+            // Add the search functionality
+            $('#searchbox').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+        });
+    </script>
 </x-app-layout>
