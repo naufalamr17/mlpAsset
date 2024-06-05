@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Input Inventory') }}
+            {{ __('Input Asset') }}
         </h2>
     </x-slot>
 
@@ -150,8 +150,11 @@
 
                         <div class="mt-6">
                             <x-primary-button class="w-1/3 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                {{ __('Add Inventory') }}
+                                {{ __('Add Asset') }}
                             </x-primary-button>
+
+                            <a href="{{ route('inventory') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 bg-red-500 hover:bg-red-700">
+                                {{ __('Cancel') }}</a>
                         </div>
                     </form>
                 </div>

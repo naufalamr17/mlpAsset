@@ -57,10 +57,13 @@
                                             {{ __('Input Asset') }}
                                         </x-nav-link></a></div>
                                     <div class="px-3 py-2"><x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard!!')">
+                                            {{ __('Repair Asset') }}
+                                        </x-nav-link></a></div>
+                                    <div class="px-3 py-2"><x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard!!')">
                                             {{ __('Dispose Asset') }}
                                         </x-nav-link></a></div>
                                     <div class="px-3 py-2"><x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard!!')">
-                                            {{ __('Repair Asset') }}
+                                            {{ __('History Asset') }}
                                         </x-nav-link></a></div>
                                 </div>
                             </div>
