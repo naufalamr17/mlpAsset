@@ -70,7 +70,21 @@
                                 @else
                                 <td>-</td>
                                 @endif
-                                <td>test</td>
+                                <td>
+                                    <div class="flex items-center justify-center">
+                                        <div class="bg-indigo-100 rounded-lg p-2">
+                                            <a href="{{ route('edit_inventory', ['id' => $inv->id]) }}" class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-edit"></i></a>
+                                        </div>
+                                        <div class="mx-2"></div>
+                                        <form action="{{ route('destroy_inventory', ['id' => $inv->id]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-600 hover:text-red-900">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
