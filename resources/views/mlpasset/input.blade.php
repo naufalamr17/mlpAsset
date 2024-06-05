@@ -114,14 +114,14 @@
                                     <x-text-input id="description" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="description" required>{{ old('description') }}</x-tect-input>
                                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                                 </div>
-                            </div>
-                            <div class="flex flex-col gap-6">
+
                                 <div>
                                     <x-input-label for="serial_number" :value="__('Serial Number')" />
                                     <x-text-input id="serial_number" class="block mt-1 w-full" type="text" name="serial_number" :value="old('serial_number')" required />
                                     <x-input-error :messages="$errors->get('serial_number')" class="mt-2" />
                                 </div>
-
+                            </div>
+                            <div class="flex flex-col gap-6">
                                 <div>
                                     <x-input-label for="acquisition_date" :value="__('Tanggal Perolehan')" />
                                     <input type="date" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="acquisition_date" class="block mt-1 w-full" name="acquisition_date" :value="old('acquisition_date')" required />
@@ -145,6 +145,24 @@
                                     <x-text-input id="acquisition_value" class="block mt-1 w-full" type="number" name="acquisition_value" :value="old('acquisition_value')" required />
                                     <x-input-error :messages="$errors->get('acquisition_value')" class="mt-2" />
                                 </div>
+
+                                <div>
+                                    <x-input-label for="hand_over_date" :value="__('Tanggal Serah Terima')" />
+                                    <input type="date" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="hand_over_date" class="block mt-1 w-full" name="hand_over_date" :value="old('hand_over_date')" />
+                                    <x-input-error :messages="$errors->get('hand_over_date')" class="mt-2" />
+                                </div>
+
+                                <div>
+                                    <x-input-label for="user" :value="__('User')" />
+                                    <x-text-input id="user" class="block mt-1 w-full" type="text" name="user" :value="old('user')" />
+                                    <x-input-error :messages="$errors->get('user')" class="mt-2" />
+                                </div>
+
+                                <div>
+                                    <x-input-label for="dept" :value="__('Dept')" />
+                                    <x-text-input id="dept" class="block mt-1 w-full" type="text" name="dept" :value="old('dept')" />
+                                    <x-input-error :messages="$errors->get('dept')" class="mt-2" />
+                                </div>
                             </div>
                         </div>
 
@@ -154,7 +172,7 @@
                             </x-primary-button>
 
                             <a href="{{ route('inventory') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 bg-red-500 hover:bg-red-700">
-                                {{ __('C</a>
+                                {{ __('Cancel') }}</a>
                         </div>
                     </form>
                 </div>

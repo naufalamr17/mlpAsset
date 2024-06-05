@@ -34,6 +34,9 @@ class InventoryController extends Controller
             'disposal_date' => 'nullable|date',
             'useful_life' => 'nullable|integer',
             'acquisition_value' => 'nullable|numeric',
+            'hand_over_date' => 'nullable|date',
+            'user' => 'nullable|string',
+            'dept' => 'nullable|string',
         ]);
 
         // Mendefinisikan PIC Dept berdasarkan acquisition_value

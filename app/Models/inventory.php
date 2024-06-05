@@ -24,5 +24,8 @@ class inventory extends Model
         'useful_life',
         'acquisition_value',
         'status',
+        'hand_over_date',
+        'user',
+        'dept',
     ];
 }

@@ -44,6 +44,7 @@
                                 <th class="px-4 py-2">{{ __('Nilai Perolehan') }}</th>
                                 <th class="px-4 py-2">{{ __('Location') }}</th>
                                 <th class="px-4 py-2">{{ __('Status') }}</th>
+                                <th class="px-4 py-2">{{ __('User') }}</th>
                                 <th class="px-4 py-2">{{ __('Action') }}</th>
                             </tr>
                         </thead>
@@ -64,6 +65,11 @@
                                 <td>{{ $inv->acquisition_value }}</td>
                                 <td>{{ $inv->location }}</td>
                                 <td>{{ $inv->status }}</td>
+                                @if(isset($inv->user))
+                                <td>{{ $inv->user }}</td>
+                                @else
+                                <td>-</td>
+                                @endif
                                 <td>test</td>
                             </tr>
                             @endforeach
