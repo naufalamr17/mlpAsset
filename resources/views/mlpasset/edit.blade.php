@@ -38,9 +38,9 @@
                                     <x-input-label for="location" :value="__('Location')" />
                                     <select id="location" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="location" required>
                                         <option value="" selected disabled>Select Location</option>
-                                        <option value="Head Office" {{ $asset->location == 'Head Office' ? 'selected' : '' }}>Head Office</option>
-                                        <option value="Office Kendari" {{ $asset->location == 'Office Kendari' ? 'selected' : '' }}>Office Kendari</option>
-                                        <option value="Site Molore" {{ $asset->location == 'Site Molore' ? 'selected' : '' }}>Site Molore</option>
+                                        <option value="Head Office" {{ $asset->location == 'Head Office' ? 'selected' : '' }}>01 Head Office</option>
+                                        <option value="Office Kendari" {{ $asset->location == 'Office Kendari' ? 'selected' : '' }}>02 Office Kendari</option>
+                                        <option value="Site Molore" {{ $asset->location == 'Site Molore' ? 'selected' : '' }}>03 Site Molore</option>
                                     </select>
                                     <x-input-error :messages="$errors->get('location')" class="mt-2" />
                                 </div>
@@ -49,13 +49,13 @@
                                     <x-input-label for="asset_category" :value="__('Kategori')" />
                                     <select id="asset_category" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="asset_category" required>
                                         <option value="" selected disabled>Select Category</option>
-                                        <option value="Kendaraan" {{ $asset->asset_category == 'Kendaraan' ? 'selected' : '' }}>Kendaraan</option>
-                                        <option value="Mesin" {{ $asset->asset_category == 'Mesin' ? 'selected' : '' }}>Mesin</option>
-                                        <option value="Alat Berat" {{ $asset->asset_category == 'Alat Berat' ? 'selected' : '' }}>Alat Berat</option>
-                                        <option value="Alat Lab" {{ $asset->asset_category == 'Alat Lab' ? 'selected' : '' }}>Alat Lab</option>
-                                        <option value="Alat Preparasi" {{ $asset->asset_category == 'Alat Preparasi' ? 'selected' : '' }}>Alat Preparasi</option>
-                                        <option value="Peralatan" {{ $asset->asset_category == 'Peralatan' ? 'selected' : '' }}>Peralatan</option>
-                                        <option value="Perlengkapan" {{ $asset->asset_category == 'Perlengkapan' ? 'selected' : '' }}>Perlengkapan</option>
+                                        <option value="Kendaraan" {{ $asset->asset_category == 'Kendaraan' ? 'selected' : '' }}>01 Kendaraan</option>
+                                        <option value="Mesin" {{ $asset->asset_category == 'Mesin' ? 'selected' : '' }}>02 Mesin</option>
+                                        <option value="Alat Berat" {{ $asset->asset_category == 'Alat Berat' ? 'selected' : '' }}>03 Alat Berat</option>
+                                        <option value="Alat Lab" {{ $asset->asset_category == 'Alat Lab' ? 'selected' : '' }}>04 Alat Lab</option>
+                                        <option value="Alat Preparasi" {{ $asset->asset_category == 'Alat Preparasi' ? 'selected' : '' }}>05 Alat Preparasi</option>
+                                        <option value="Peralatan" {{ $asset->asset_category == 'Peralatan' ? 'selected' : '' }}>06 Peralatan</option>
+                                        <option value="Perlengkapan" {{ $asset->asset_category == 'Perlengkapan' ? 'selected' : '' }}>07 Perlengkapan</option>
                                     </select>
                                     <x-input-error :messages="$errors->get('asset_category')" class="mt-2" />
                                 </div>
