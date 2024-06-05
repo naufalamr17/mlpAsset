@@ -58,7 +58,7 @@ class InventoryController extends Controller
 
         // Menentukan id3 berdasarkan asset_category
         if ($request->asset_category == 'Kendaraan') {
-            $id3 = '002';
+            $id3 = '01';
         } elseif ($request->asset_category == 'Mesin') {
             $id3 = '02';
         } elseif ($request->asset_category == 'Alat Berat') {
