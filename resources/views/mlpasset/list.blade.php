@@ -27,6 +27,67 @@
         }
     </style>
 
+    <script src="https://cdn.jsdelivr.net/npm/quagga/dist/quagga.min.js"></script>
+    <style>
+        #interactive {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #interactive video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    </style>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -48,11 +109,18 @@
                     @endif
                     <div class="flex justify-between mb-4">
                         <input type="text" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="searchbox" id="searchbox" placeholder="Search..." autofocus>
-                        <!-- Ubah tombol menjadi input dengan tipe file -->
-                        <!-- <input type="file" id="fileInput" accept="image/*" style="display: none;">
-                        <label for="fileInput" class="bg-gray-200 text-gray-700 px-3 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:bg-gray-300">
-                            Scan Barcode
-                        </label> -->
+                        <x-primary-button id="openModalButton" class="button-with-icon">
+                            <i class="fas fa-camera"></i>
+                        </x-primary-button>
+
+                        <!-- The Modal -->
+                        <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <div id="interactive" class="viewport"></div>
+                                <div id="result"></div>
+                            </div>
+                        </div>
                         <a href="{{ route('add_inventory') }}">
                             <x-primary-button class="items-center justify-center text-white font-bold py-2 px-4 rounded">
                                 {{ __('Add Asset') }}
@@ -120,7 +188,6 @@
         </div>
     </div>
 
-    <!-- <script src="https://unpkg.com/@zxing/library@latest"></script> -->
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Include DataTables JS -->
@@ -155,29 +222,72 @@
         });
     </script>
 
-    <!-- <script>
-        // Tambahkan event listener untuk input file
-        document.getElementById('fileInput').addEventListener('change', function(e) {
-            var file = e.target.files[0];
-            if (file) {
-                // Membaca file sebagai URL
-                var reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = function(e) {
-                    // Buat objek barcode scanner
-                    var barcodeScanner = new ZXing.BrowserBarcodeReader();
-
-                    // Memindai barcode dari gambar yang dipilih
-                    barcodeScanner.decodeFromImageUrl(e.target.result).then(result => {
-                        // Isi nilai barcode ke dalam kotak pencarian
-                        document.getElementById('searchbox').value = result.text;
-                    }).catch(error => {
-                        console.error('Error decoding barcode: ', error);
-                        alert('Error decoding barcode. Please try again.');
-                    });
-                };
-            }
+    <script>
+        document.getElementById('openModalButton').addEventListener('click', function() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "block";
+            startScanner();
         });
-    </script> -->
+
+        document.getElementsByClassName('close')[0].addEventListener('click', function() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "none";
+            Quagga.stop();
+        });
+
+        window.onclick = function(event) {
+            var modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+                Quagga.stop();
+            }
+        };
+
+        function startScanner() {
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector('#interactive'), // Target the div element, not the video directly
+                    constraints: {
+                        facingMode: "environment" // Ensure back camera is used
+                    }
+                },
+                decoder: {
+                    readers: [
+                        "code_128_reader", "ean_reader", "ean_8_reader", "code_39_reader", "code_39_vin_reader",
+                        "codabar_reader", "upc_reader", "upc_e_reader", "i2of5_reader"
+                    ]
+                }
+            }, function(err) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                console.log("Initialization finished. Ready to start");
+                Quagga.start();
+            });
+
+            Quagga.onDetected(function(result) {
+                if (result.codeResult) {
+                    var code = result.codeResult.code;
+                    document.getElementById('result').innerText = 'Barcode detected: ' + code;
+
+                    // Set the code in the search box
+                    var searchBox = document.getElementById('searchbox');
+                    searchBox.value = code;
+
+                    // Search the table
+                    var table = $('#inventoryTable').DataTable();
+                    table.search(code).draw();
+
+                    // Close the modal
+                    var modal = document.getElementById('myModal');
+                    modal.style.display = "none";
+                    Quagga.stop();
+                }
+            });
+        }
+    </script>
 
 </x-app-layout>
