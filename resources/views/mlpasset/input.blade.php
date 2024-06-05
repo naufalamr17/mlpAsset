@@ -70,41 +70,41 @@
                                     <x-input-label for="asset_type" :value="__('Jenis')" />
                                     <input list="asset_types" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" id="asset_type" name="asset_type" required>
                                     <datalist id="asset_types">
-                                        <option value="LV">LV (ID: 001)</option>
-                                        <option value="Mobil Tangki">Mobil Tangki (ID: 002)</option>
-                                        <option value="Dump Truck">Dump Truck (ID: 003)</option>
-                                        <option value="Elf">Elf (ID: 004)</option>
-                                        <option value="Mobil Operasional">Mobil Operasional (ID: 005)</option>
-                                        <option value="Motor Operasional">Motor Operasional (ID: 006)</option>
-                                        <option value="Speed Boat">Speed Boat (ID: 007)</option>
-                                        <option value="Genset">Genset (ID: 008)</option>
-                                        <option value="Compressor">Compressor (ID: 009)</option>
-                                        <option value="Crusher Big">Crusher Big (ID: 010)</option>
-                                        <option value="Excavator">Excavator (ID: 011)</option>
-                                        <option value="Ramp Door">Ramp Door (ID: 012)</option>
-                                        <option value="Oven">Oven (ID: 013)</option>
-                                        <option value="Jaw Crusher">Jaw Crusher (ID: 014)</option>
-                                        <option value="Pul Vulizer">Pul Vulizer (ID: 015)</option>
-                                        <option value="Mixer Type C">Mixer Type C (ID: 016)</option>
-                                        <option value="Top Grinder">Top Grinder (ID: 017)</option>
-                                        <option value="Roll Crusher">Roll Crusher (ID: 018)</option>
-                                        <option value="Sieve Shaker Mesin">Sieve Shaker Mesin (ID: 019)</option>
-                                        <option value="Epsilon">Epsilon (ID: 020)</option>
-                                        <option value="Mesin Press">Mesin Press (ID: 021)</option>
-                                        <option value="Laptop/PC">Laptop/PC (ID: 022)</option>
-                                        <option value="Printer/Scanner">Printer/Scanner (ID: 023)</option>
-                                        <option value="UPS">UPS (ID: 024)</option>
-                                        <option value="GPS">GPS (ID: 025)</option>
-                                        <option value="Alat Komunikasi">Alat Komunikasi (ID: 026)</option>
-                                        <option value="Perangkat Jaringan">Perangkat Jaringan (ID: 027)</option>
-                                        <option value="Brankas">Brankas (ID: 028)</option>
-                                        <option value="Alat Kesehatan">Alat Kesehatan (ID: 029)</option>
-                                        <option value="Meja">Meja (ID: 030)</option>
-                                        <option value="Kursi">Kursi (ID: 031)</option>
-                                        <option value="Lemari">Lemari (ID: 032)</option>
-                                        <option value="Elektronik">Elektronik (ID: 033)</option>
-                                        <option value="Tempat Tidur">Tempat Tidur (ID: 034)</option>
-                                        <option value="Lain - Lain">Lain - Lain (ID: 050)</option>
+                                        <option value="LV">LV</option>
+                                        <option value="Mobil Tangki">Mobil Tangki</option>
+                                        <option value="Dump Truck">Dump Truck</option>
+                                        <option value="Elf">Elf</option>
+                                        <option value="Mobil Operasional">Mobil Operasional</option>
+                                        <option value="Motor Operasional">Motor Operasional</option>
+                                        <option value="Speed Boat">Speed Boat</option>
+                                        <option value="Genset">Genset</option>
+                                        <option value="Compressor">Compressor</option>
+                                        <option value="Crusher Big">Crusher Big</option>
+                                        <option value="Excavator">Excavator</option>
+                                        <option value="Ramp Door">Ramp Door</option>
+                                        <option value="Oven">Oven</option>
+                                        <option value="Jaw Crusher">Jaw Crusher</option>
+                                        <option value="Pul Vulizer">Pul Vulizer</option>
+                                        <option value="Mixer Type C">Mixer Type C</option>
+                                        <option value="Top Grinder">Top Grinder</option>
+                                        <option value="Roll Crusher">Roll Crusher</option>
+                                        <option value="Sieve Shaker Mesin">Sieve Shaker Mesin</option>
+                                        <option value="Epsilon">Epsilon</option>
+                                        <option value="Mesin Press">Mesin Press</option>
+                                        <option value="Laptop/PC">Laptop/PC</option>
+                                        <option value="Printer/Scanner">Printer/Scanner</option>
+                                        <option value="UPS">UPS</option>
+                                        <option value="GPS">GPS</option>
+                                        <option value="Alat Komunikasi">Alat Komunikasi</option>
+                                        <option value="Perangkat Jaringan">Perangkat Jaringan</option>
+                                        <option value="Brankas">Brankas</option>
+                                        <option value="Alat Kesehatan">Alat Kesehatan</option>
+                                        <option value="Meja">Meja</option>
+                                        <option value="Kursi">Kursi</option>
+                                        <option value="Lemari">Lemari</option>
+                                        <option value="Elektronik">Elektronik</option>
+                                        <option value="Tempat Tidur">Tempat Tidur</option>
+                                        <option value="Lain - Lain">Lain - Lain</option>
                                     </datalist>
                                     <x-input-error :messages="$errors->get('asset_type')" class="mt-2" />
                                 </div>
@@ -154,7 +154,7 @@
                             </x-primary-button>
 
                             <a href="{{ route('inventory') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 bg-red-500 hover:bg-red-700">
-                                {{ __('Cancel') }}</a>
+                                {{ __('C</a>
                         </div>
                     </form>
                 </div>
