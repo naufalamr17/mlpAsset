@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Inventory List') }}
+            {{ __('Inventory Asset Management') }}
         </h2>
     </x-slot>
 
@@ -25,9 +25,9 @@
                     </div><br>
                     @endif
                     <div class="flex justify-between mb-4">
-                        <h2 class="text-xl font-semibold">Inventory List</h2>
+                        <h2 class="text-xl font-semibold">Inventory Asset Management</h2>
                         <a href="{{ route('add_inventory') }}"><x-primary-button class="items-center justify-center text-white font-bold py-2 px-4 rounded">
-                                {{ __('Add Inventory') }}
+                                {{ __('Add Asset') }}
                             </x-primary-button></a>
                     </div>
                     <table class="w-full table-auto">
