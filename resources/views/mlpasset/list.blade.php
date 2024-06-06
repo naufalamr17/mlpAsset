@@ -213,7 +213,7 @@
             $('#searchbox').on('keyup', function() {
                 table.search(this.value).draw();
 
-                if (this.value.trim() !== '') {
+                if (this.value.length >= 13) {
                     setTimeout(() => {
                         this.select(); // Seleksi seluruh teks di dalam kotak pencarian
                     }, 2000);
