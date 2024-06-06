@@ -324,28 +324,20 @@ class InventoryController extends Controller
 
         if ($request->store_to_database == 'true') {
             // dd($request);
-            if ($userhist != null) {
-                $asset->update($request->all());
-                $userhist->update($request->all());
-            } else {
-                $asset->update($request->all());
 
-                // Ambil ID aset yang baru saja disimpan
-                $inv_id = $asset->id;
+            // Ambil ID aset yang baru saja disimpan
+            $inv_id = $asset->id;
 
-                // dd($inv_id);
+            // dd($inv_id);
 
-                // Buat catatan di tabel userhist
-                $hist = Userhist::create([
-                    'inv_id' => $inv_id,
-                    'hand_over_date' => $request['hand_over_date'], // Pastikan untuk menyesuaikan dengan atribut yang sesuai
-                    'user' => $request['user'], // Sesuaikan dengan atribut yang sesuai
-                    'dept' => $request['dept'], // Sesuaikan dengan atribut yang sesuai
-                    'note' => $request['note'], // Sesuaikan dengan atribut yang sesuai
-                ]);
-
-
-            }
+            // Buat catatan di tabel userhist
+            $hist = Userhist::create([
+                'inv_id' => $inv_id,
+                'hand_over_date' => $request['hand_over_date'], // Pastikan untuk menyesuaikan dengan atribut yang sesuai
+                'user' => $request['user'], // Sesuaikan dengan atribut yang sesuai
+                'dept' => $request['dept'], // Sesuaikan dengan atribut yang sesuai
+                'note' => $request['note'], // Sesuaikan dengan atribut yang sesuai
+            ]);
         }
 
         return redirect()->route('inventory')->with('success', 'Asset updated successfully.');
