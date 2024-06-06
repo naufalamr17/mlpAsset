@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight" style="font-size: 1.5rem; line-height: 2rem;">
             {{ __('Dashboard Asset Management') }}
         </h2>
     </x-slot>
