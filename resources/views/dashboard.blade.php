@@ -74,15 +74,15 @@
                     backgroundColor: '#4CAF50'
                 },
                 {
+                    label: 'Repair',
+                    data: repairData,
+                    backgroundColor: '#FFC107'
+                },
+                {
                     label: 'Broken',
                     data: brokenData,
                     backgroundColor: '#F44336'
                 },
-                {
-                    label: 'Repair',
-                    data: repairData,
-                    backgroundColor: '#FFC107'
-                }
             ]
         };
 
