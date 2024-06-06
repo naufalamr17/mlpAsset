@@ -154,10 +154,10 @@
                                 <td class="px-4 py-2">{{ $history->serial_number }}</td>
                                 <td class="px-4 py-2">{{ $history->location }}</td>
                                 <td class="px-4 py-2">{{ $history->status }}</td>
-                                <td class="px-4 py-2">{{ $history->serah_terima }}</td>
-                                <td class="px-4 py-2">{{ $history->user }}</td>
-                                <td class="px-4 py-2">{{ $history->dept }}</td>
-                                <td class="px-4 py-2">{{ $history->note }}</td>
+                                <td class="px-4 py-2">{{ isset($history->serah_terima) ? $history->serah_terima : '-' }}</td>
+                                <td class="px-4 py-2">{{ isset($history->user) ?  $history->user : '-' }}</td>
+                                <td class="px-4 py-2">{{ isset($history->dept) ?  $history->dept : '-' }}</td>
+                                <td class="px-4 py-2">{{ isset($history->note) ?  $history->note : '-' }}</td>
                             </tr>
                             @endforeach
                         </tbody>
