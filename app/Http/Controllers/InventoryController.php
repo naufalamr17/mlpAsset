@@ -200,7 +200,6 @@ class InventoryController extends Controller
     public function destroy($id)
     {
         $inventory = inventory::findOrFail($id);
-        $inventory->delete();
 
         return redirect()->back()->with('success', 'Inventory deleted successfully.');
     }
@@ -208,11 +207,17 @@ class InventoryController extends Controller
     public function edit($id)
     {
         $asset = inventory::findOrFail($id);
-        return view('mlpasset.edit', compact('asset'));
+        $userhist = Userhist::where('inv_id', $id)
+            ->where('hand_over_date', $asset->hand_over_date)
+            ->firstOrFail();
+
+        // dd($userhist);
+        return view('mlpasset.edit', compact('asset', 'userhist'));
     }
 
     public function update(Request $request, $id)
     {
+        // dd($request);
         $request->validate([
             'old_asset_code' => 'required',
             'location' => 'required',
@@ -227,9 +232,14 @@ class InventoryController extends Controller
             'hand_over_date' => 'nullable|date',
             'user' => 'nullable',
             'dept' => 'nullable',
+            'note' => 'nullable',
         ]);
 
         $asset = inventory::findOrFail($id);
+        $userhist = Userhist::where('inv_id', $id)
+            ->where('hand_over_date', $asset->hand_over_date)
+            ->firstOrFail();
+
         $asset_code = $asset->asset_code;
 
         $parts = explode('-', $asset_code);
@@ -312,6 +322,12 @@ class InventoryController extends Controller
                 $asset->update($request->all());
             }
             // dd($iddb);
+        }
+
+        if ($request->store_to_database == 'true') {
+            $asset->update($request->all());
+            $userhist->update($request->all());
+            // dd('halo');
         }
 
         return redirect()->route('inventory')->with('success', 'Asset updated successfully.');
