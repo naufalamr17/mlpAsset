@@ -62,7 +62,104 @@
 
                                 <div>
                                     <x-input-label for="asset_position_dept" :value="__('Asset Position')" />
-                                    <x-text-input id="asset_position_dept" class="block mt-1 w-full" type="text" name="asset_position_dept" required />
+                                    <input id="asset_position_dept" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text" name="asset_position_dept" list="asset_position_list" required />
+                                    <datalist id="asset_position_list">
+                                        <option value="Geology">Geology</option>
+                                        <option value="R. HSE">R. HSE</option>
+                                        <option value="Klinik">Klinik</option>
+                                        <option value="R. Finance">R. Finance</option>
+                                        <option value="R. Meeting">R. Meeting</option>
+                                        <option value="R. HRGA (SITE)">R. HRGA (SITE)</option>
+                                        <option value="R. Logistik">R. Logistik</option>
+                                        <option value="R. Produksi">R. Produksi</option>
+                                        <option value="R. KTT">R. KTT</option>
+                                        <option value="R. Eksternal">R. Eksternal</option>
+                                        <option value="R. Shipping">R. Shipping</option>
+                                        <option value="R. Maintenance">R. Maintenance</option>
+                                        <option value="R. Lab">R. Lab</option>
+                                        <option value="R. Preparasi">R. Preparasi</option>
+                                        <option value="Pos Security">Pos Security</option>
+                                        <option value="Pantry SITE">Pantry SITE</option>
+                                        <option value="Gs Maintenance">Gs Maintenance</option>
+                                        <option value="Rumah Genset">Rumah Genset</option>
+                                        <option value="Room A1">Room A1</option>
+                                        <option value="Room A2">Room A2</option>
+                                        <option value="Room A3A">Room A3A</option>
+                                        <option value="Room A3B">Room A3B</option>
+                                        <option value="Room A4">Room A4</option>
+                                        <option value="Room A5">Room A5</option>
+                                        <option value="Room A6">Room A6</option>
+                                        <option value="Room A7">Room A7</option>
+                                        <option value="Room A8">Room A8</option>
+                                        <option value="Room A9">Room A9</option>
+                                        <option value="Room A10">Room A10</option>
+                                        <option value="Room B1">Room B1</option>
+                                        <option value="Room B2">Room B2</option>
+                                        <option value="Room B3A">Room B3A</option>
+                                        <option value="Room B3B">Room B3B</option>
+                                        <option value="Room B4">Room B4</option>
+                                        <option value="Room B5">Room B5</option>
+                                        <option value="Room B6">Room B6</option>
+                                        <option value="Room B7">Room B7</option>
+                                        <option value="Room B8">Room B8</option>
+                                        <option value="Room B9">Room B9</option>
+                                        <option value="Room B10">Room B10</option>
+                                        <option value="User">User</option>
+                                        <option value="Mushola">Mushola</option>
+                                        <option value="R. Dapur">R. Dapur</option>
+                                        <option value="Gudang GA">Gudang GA</option>
+                                        <option value="Stone Crusher">Stone Crusher</option>
+                                        <option value="Survey">Survey</option>
+                                        <option value="Jetty">Jetty</option>
+                                        <option value="Nursery">Nursery</option>
+                                        <option value="Room VIP 1">Room VIP 1</option>
+                                        <option value="Room VIP 2">Room VIP 2</option>
+                                        <option value="Room VIP 3A">Room VIP 3A</option>
+                                        <option value="Room VIP 3B">Room VIP 3B</option>
+                                        <option value="Room VIP 5">Room VIP 5</option>
+                                        <option value="Laundry">Laundry</option>
+                                        <option value="Gudang Mesin">Gudang Mesin</option>
+                                        <option value="LV 01">LV 01</option>
+                                        <option value="LV 02">LV 02</option>
+                                        <option value="LV 03">LV 03</option>
+                                        <option value="LV 05">LV 05</option>
+                                        <option value="LV 06">LV 06</option>
+                                        <option value="LV 07">LV 07</option>
+                                        <option value="LV 08">LV 08</option>
+                                        <option value="LV 09">LV 09</option>
+                                        <option value="LV 10">LV 10</option>
+                                        <option value="LV 11">LV 11</option>
+                                        <option value="LV 12">LV 12</option>
+                                        <option value="LV 16">LV 16</option>
+                                        <option value="LV 15">LV 15</option>
+                                        <option value="ELF">ELF</option>
+                                        <option value="Dump Truck">Dump Truck</option>
+                                        <option value="R. PAK WIN">R. PAK WIN</option>
+                                        <option value="R. Pantry">R. Pantry</option>
+                                        <option value="R. Meeting Kecil">R. Meeting Kecil</option>
+                                        <option value="R. Meeting Besar">R. Meeting Besar</option>
+                                        <option value="R. Staff">R. Staff</option>
+                                        <option value="R. Manager 4">R. Manager 4</option>
+                                        <option value="R. Deputy GM Support">R. Deputy GM Support</option>
+                                        <option value="R. Manager 1">R. Manager 1</option>
+                                        <option value="R. Manager 2">R. Manager 2</option>
+                                        <option value="R. Manager 3">R. Manager 3</option>
+                                        <option value="R. Direksi 1">R. Direksi 1</option>
+                                        <option value="R. Direksi 2">R. Direksi 2</option>
+                                        <option value="R. Direksi 3">R. Direksi 3</option>
+                                        <option value="R. Lounge">R. Lounge</option>
+                                        <option value="R. Legal">R. Legal</option>
+                                        <option value="R. Receptionist">R. Receptionist</option>
+                                        <option value="Basement">Basement</option>
+                                        <option value="R. HRGA-IT">R. HRGA-IT</option>
+                                        <option value="R. Staff 18B/L">R. Staff 18B/L</option>
+                                        <option value="R. GM Operation">R. GM Operation</option>
+                                        <option value="R. Deputy GM Operation">R. Deputy GM Operation</option>
+                                        <option value="R. Manager Engineer">R. Manager Engineer</option>
+                                        <option value="R. Manager 18B/L">R. Manager 18B/L</option>
+                                        <option value="R. Smooking Room">R. Smooking Room</option>
+                                        <option value="R. CEO">R. CEO</option>
+                                    </datalist>
                                     <x-input-error :messages="$errors->get('asset_position_dept')" class="mt-2" />
                                 </div>
 
