@@ -184,7 +184,7 @@
                         "orderable": false,
                         "targets": '_all'
                     } // Disable ordering on all other columns
-                ],
+                ],"order": [[8, 'desc']],
                 "dom": '<"top">rt<"bottom"ip><"clear">',
             });
 
