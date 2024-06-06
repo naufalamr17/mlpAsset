@@ -11,13 +11,14 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <h2 class="text-center text-xl font-bold mb-4">Status Asset MLP</h2>
                 <div class="flex">
                     <div class="w-1/3 p-4" style="width: 33.333333%;">
-                        <h3 class="text-center text-xl font-bold mb-4">Status Asset</h3>
+                        <h3 class="text-center text-m mb-4">Status Asset</h3>
                         <canvas id="pieChart" style="width: 100%; max-height: 400px;"></canvas>
                     </div>
                     <div class="w-2/3 p-4" style="width: 66.666667%;">
-                        <h3 class="text-center text-xl font-bold mb-4">Status Asset per Kategori</h3>
+                        <h3 class="text-center text-m mb-4">Status Asset per Kategori</h3>
                         <canvas id="stackedBarChart" style="width: 100%; max-height: 400px;"></canvas>
                     </div>
                 </div>
