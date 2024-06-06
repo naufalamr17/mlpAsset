@@ -11,14 +11,13 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <h1 class="text-center text-xl font-bold mb-4">Status Asset MLP</h1>
                 <div class="flex">
                     <div class="w-1/3 p-4" style="width: 33.333333%;">
-                        <h3 class="text-center text-m font-bold mb-4">Status Asset</h3>
+                        <h3 class="text-center text-xl font-bold mb-4">Status Asset</h3>
                         <canvas id="pieChart" style="width: 100%; max-height: 400px;"></canvas>
                     </div>
                     <div class="w-2/3 p-4" style="width: 66.666667%;">
-                        <h3 class="text-center text-m font-bold mb-4">Status Asset per Kategori</h3>
+                        <h3 class="text-center text-xl font-bold mb-4">Status Asset per Kategori</h3>
                         <canvas id="stackedBarChart" style="width: 100%; max-height: 400px;"></canvas>
                     </div>
                 </div>
@@ -27,15 +26,27 @@
     </div>
 
     <script>
+        const statusCounts = @json($statusCounts);
+        const categoryStatusCounts = @json($categoryStatusCounts);
+
         // Pie Chart Data
+        const statusLabels = ['Good', 'Repair', 'Broken'];
+        const statusColors = {
+            Good: '#4CAF50', // Green
+            Repair: '#FFC107', // Yellow
+            Broken: '#F44336' // Red
+        };
+
+        // Ensure the data and colors align with the status labels
         const pieData = {
-            labels: ['Good', 'Broken', 'Repair'],
+            labels: statusLabels,
             datasets: [{
                 label: 'Asset Status',
-                data: [getRandomInt(50, 100), getRandomInt(1, 50), getRandomInt(1, 50)],
-                backgroundColor: ['#4CAF50', '#F44336', '#FFC107'],
+                data: statusLabels.map(label => statusCounts[label] || 0),
+                backgroundColor: statusLabels.map(label => statusColors[label]),
             }]
         };
+
 
         // Pie Chart Config
         const pieConfig = {
@@ -50,21 +61,26 @@
         );
 
         // Stacked Bar Chart Data
+        const labels = Object.keys(categoryStatusCounts);
+        const goodData = labels.map(label => categoryStatusCounts[label]['Good'] || 0);
+        const brokenData = labels.map(label => categoryStatusCounts[label]['Broken'] || 0);
+        const repairData = labels.map(label => categoryStatusCounts[label]['Repair'] || 0);
+
         const stackedBarData = {
-            labels: ['Category 1', 'Category 2', 'Category 3', 'Category 4'],
+            labels: labels,
             datasets: [{
                     label: 'Good',
-                    data: [getRandomInt(20, 50), getRandomInt(20, 50), getRandomInt(20, 50), getRandomInt(20, 50)],
+                    data: goodData,
                     backgroundColor: '#4CAF50'
                 },
                 {
                     label: 'Broken',
-                    data: [getRandomInt(1, 20), getRandomInt(1, 20), getRandomInt(1, 20), getRandomInt(1, 20)],
+                    data: brokenData,
                     backgroundColor: '#F44336'
                 },
                 {
                     label: 'Repair',
-                    data: [getRandomInt(1, 20), getRandomInt(1, 20), getRandomInt(1, 20), getRandomInt(1, 20)],
+                    data: repairData,
                     backgroundColor: '#FFC107'
                 }
             ]
@@ -91,12 +107,5 @@
             document.getElementById('stackedBarChart'),
             stackedBarConfig
         );
-
-        // Function to generate random integer between min and max
-        function getRandomInt(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
     </script>
 </x-app-layout>
