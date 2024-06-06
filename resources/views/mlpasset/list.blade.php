@@ -85,7 +85,6 @@
             text-decoration: none;
             cursor: pointer;
         }
-
     </style>
 
     <div class="py-12">
@@ -156,7 +155,11 @@
                                 <td>{{ $inv->description }}</td>
                                 <td>{{ $inv->serial_number }}</td>
                                 <td>{{ $inv->acquisition_date }}</td>
+                                @if($inv->acquisition_value == 0)
+                                <td>-</td>
+                                @else
                                 <td>{{ $inv->acquisition_value }}</td>
+                                @endif
                                 <td>{{ $inv->location }}</td>
                                 <td>{{ $inv->status }}</td>
                                 @if(isset($inv->user))
