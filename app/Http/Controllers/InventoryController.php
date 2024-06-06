@@ -190,8 +190,6 @@ class InventoryController extends Controller
                 'dept' => $validatedData['dept'], // Sesuaikan dengan atribut yang sesuai
                 'note' => $validatedData['note'], // Sesuaikan dengan atribut yang sesuai
             ]);
-        } else {
-            dd('apaaa');
         }
 
         return redirect()->route('inventory')->with('success', 'Inventory created successfully.');
@@ -209,9 +207,9 @@ class InventoryController extends Controller
         $asset = inventory::findOrFail($id);
         $userhist = Userhist::where('inv_id', $id)
             ->where('hand_over_date', $asset->hand_over_date)
-            ->firstOrFail();
+            ->first();
 
-        // dd($userhist);
+        // dd($asset);
         return view('mlpasset.edit', compact('asset', 'userhist'));
     }
 
@@ -238,7 +236,7 @@ class InventoryController extends Controller
         $asset = inventory::findOrFail($id);
         $userhist = Userhist::where('inv_id', $id)
             ->where('hand_over_date', $asset->hand_over_date)
-            ->firstOrFail();
+            ->first();
 
         $asset_code = $asset->asset_code;
 
@@ -325,11 +323,52 @@ class InventoryController extends Controller
         }
 
         if ($request->store_to_database == 'true') {
-            $asset->update($request->all());
-            $userhist->update($request->all());
-            // dd('halo');
+            // dd($request);
+            if ($userhist != null) {
+                $asset->update($request->all());
+                $userhist->update($request->all());
+            } else {
+                $asset->update($request->all());
+
+                // Ambil ID aset yang baru saja disimpan
+                $inv_id = $asset->id;
+
+                // dd($inv_id);
+
+                // Buat catatan di tabel userhist
+                $hist = Userhist::create([
+                    'inv_id' => $inv_id,
+                    'hand_over_date' => $request['hand_over_date'], // Pastikan untuk menyesuaikan dengan atribut yang sesuai
+                    'user' => $request['user'], // Sesuaikan dengan atribut yang sesuai
+                    'dept' => $request['dept'], // Sesuaikan dengan atribut yang sesuai
+                    'note' => $request['note'], // Sesuaikan dengan atribut yang sesuai
+                ]);
+
+
+            }
         }
 
         return redirect()->route('inventory')->with('success', 'Asset updated successfully.');
+    }
+
+    public function history()
+    {
+        $userhist = Userhist::join('inventories', 'userhists.inv_id', '=', 'inventories.id')
+            ->select(
+                'inventories.asset_code as kode_asset',
+                'inventories.asset_category',
+                'inventories.asset_position_dept',
+                'inventories.asset_type',
+                'inventories.description',
+                'inventories.serial_number',
+                'inventories.location',
+                'inventories.status',
+                'userhists.hand_over_date as serah_terima',
+                'userhists.user',
+                'userhists.dept',
+                'userhists.note'
+            )
+            ->get();
+        return view('mlpasset.history', compact('userhist'));
     }
 }

@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/destroy_inventory/{id}', [InventoryController::class, 'destroy'])->name('destroy_inventory');
     Route::get('/inventory/{id}/edit', [InventoryController::class, 'edit'])->name('edit_inventory');
     Route::post('/inventory/{id}', [InventoryController::class, 'update'])->name('update_inventory');
+    Route::get('/history_inventory', [InventoryController::class, 'history'])->name('history_inventory');
 });
 
 require __DIR__ . '/auth.php';

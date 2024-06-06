@@ -257,7 +257,7 @@
 
                                 <div>
                                     <x-input-label for="note" :value="__('User Note')" />
-                                    <x-text-input id="note" class="block mt-1 w-full" type="text" name="note" :value="old('note', $userhist->note)" />
+                                    <x-text-input id="note" class="block mt-1 w-full" type="text" name="note" :value="old('note', $userhist ? $userhist->note : '')" />
                                     <x-input-error :messages="$errors->get('note')" class="mt-2" />
                                     <div class="flex items-center mt-2">
                                         <input id="store_to_database" type="checkbox" class="rounded-md shadow-sm form-checkbox h-3 w-3 text-indigo-600 transition duration-150 ease-in-out" name="store_to_database" value="true" @if(old('store_to_database')=='true' ) checked @endif />

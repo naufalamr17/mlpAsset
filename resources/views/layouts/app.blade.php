@@ -62,7 +62,7 @@
                                     <div class="px-3 py-2"><x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard!!')">
                                             {{ __('Dispose Asset') }}
                                         </x-nav-link></a></div>
-                                    <div class="px-3 py-2"><x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard!!')">
+                                    <div class="px-3 py-2"><x-nav-link :href="route('history_inventory')" :active="request()->routeIs('history_inventory')">
                                             {{ __('History Asset') }}
                                         </x-nav-link></a></div>
                                 </div>
