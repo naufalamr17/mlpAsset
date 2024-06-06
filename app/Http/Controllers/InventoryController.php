@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\inventory;
+use App\Models\userhist;
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller
@@ -37,6 +38,7 @@ class InventoryController extends Controller
             'hand_over_date' => 'nullable|date',
             'user' => 'nullable|string',
             'dept' => 'nullable|string',
+            'note' => 'nullable|string',
         ]);
 
         // Mendefinisikan PIC Dept berdasarkan acquisition_value
@@ -173,6 +175,24 @@ class InventoryController extends Controller
 
         // Simpan data aset ke dalam database
         $asset = Inventory::create($validatedData);
+
+        if ($request->store_to_database == 'true') {
+            // Ambil ID aset yang baru saja disimpan
+            $inv_id = $asset->id;
+
+            // dd($inv_id);
+
+            // Buat catatan di tabel userhist
+            $hist = Userhist::create([
+                'inv_id' => $inv_id,
+                'hand_over_date' => $validatedData['hand_over_date'], // Pastikan untuk menyesuaikan dengan atribut yang sesuai
+                'user' => $validatedData['user'], // Sesuaikan dengan atribut yang sesuai
+                'dept' => $validatedData['dept'], // Sesuaikan dengan atribut yang sesuai
+                'note' => $validatedData['note'], // Sesuaikan dengan atribut yang sesuai
+            ]);
+        } else {
+            dd('apaaa');
+        }
 
         return redirect()->route('inventory')->with('success', 'Inventory created successfully.');
     }

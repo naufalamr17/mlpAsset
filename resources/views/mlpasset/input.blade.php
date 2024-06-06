@@ -239,7 +239,7 @@
 
                                 <div>
                                     <x-input-label for="acquisition_value" :value="__('Nilai Perolehan')" />
-                                    <x-text-input id="acquisition_value" class="block mt-1 w-full" type="number" name="acquisition_value" :value="old('acquisition_value')" required />
+                                    <x-text-input id="acquisition_value" class="block mt-1 w-full" type="number" name="acquisition_value" :value="old('acquisition_value')" />
                                     <x-input-error :messages="$errors->get('acquisition_value')" class="mt-2" />
                                 </div>
 
@@ -259,6 +259,16 @@
                                     <x-input-label for="dept" :value="__('Dept')" />
                                     <x-text-input id="dept" class="block mt-1 w-full" type="text" name="dept" :value="old('dept')" />
                                     <x-input-error :messages="$errors->get('dept')" class="mt-2" />
+                                </div>
+
+                                <div>
+                                    <x-input-label for="note" :value="__('User Note')" />
+                                    <x-text-input id="note" class="block mt-1 w-full" type="text" name="note" :value="old('note')" />
+                                    <x-input-error :messages="$errors->get('note')" class="mt-2" />
+                                    <div class="flex items-center mt-2">
+                                        <input id="store_to_database" type="checkbox" class="rounded-md shadow-sm form-checkbox h-3 w-3 text-indigo-600 transition duration-150 ease-in-out" name="store_to_database" value="true" @if(old('store_to_database')=='true' ) checked @endif />
+                                        <label for="store_to_database" class="ml-3 block text-xs text-gray-900">Add user to history</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
