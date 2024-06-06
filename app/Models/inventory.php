@@ -28,4 +28,9 @@ class inventory extends Model
         'user',
         'dept',
     ];
+
+    public function userhist()
+    {
+        return $this->hasMany(userhist::class);
+    }
 }
