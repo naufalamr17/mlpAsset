@@ -394,6 +394,7 @@ class InventoryController extends Controller
                 'acquisition_date' => $inventory->acquisition_date,
                 'useful_life' => $inventory->useful_life,
                 'acquisition_value' => $inventory->acquisition_value,
+                'status' => $inventory->status,
                 // Tambahkan data lain yang ingin Anda kembalikan
             ];
 

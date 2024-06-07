@@ -6,3 +6,13 @@ tglserahterima	user	Dept	Remarks
 
 
 font use lato
+
+Data asset dan user nanti akan di bagi menjadi 3 sesuai dengan lokasi
+
+masukan : 
+catat perubahan data oleh siapa dan kapan (log data)
+blackbox testing
+import export excel
+tambahkan file approvement untuk dispose
+request edit untuk admin
+improve dashboard

@@ -237,6 +237,18 @@
                                     <x-input-error :messages="$errors->get('acquisition_value')" class="mt-2" />
                                 </div>
 
+                                <div>
+                                    <x-input-label for="status" :value="__('Status')" />
+                                    <select id="status" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="status" required>
+                                        <option value="" selected disabled>Select Location</option>
+                                        <option value="Good">Good</option>
+                                        <option value="Breakdown">Breakdown</option>
+                                        <option value="Repair">Repair</option>
+                                    </select>
+                                    <x-input-error :messages="$errors->get('status')" class="mt-2" />
+                                </div>
+                                <!-- Table statusdetail -->
+                                 
                             </div>
                         </div>
 
@@ -282,6 +294,7 @@
                             $('#acquisition_date').val(response.acquisition_date);
                             $('#useful_life').val(response.useful_life);
                             $('#acquisition_value').val(response.acquisition_value);
+                            $('#status').val(response.status);
                         },
                         error: function(xhr, status, error) {
                             console.error(xhr.responseText); // Log pesan kesalahan ke konsol
