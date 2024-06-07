@@ -8,6 +8,8 @@
     <!-- Include Chart.js from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
@@ -48,11 +50,36 @@
             }]
         };
 
+        // Calculate total count for pie chart
+        const totalStatusCount = pieData.datasets[0].data.reduce((a, b) => a + b, 0);
 
         // Pie Chart Config
         const pieConfig = {
             type: 'pie',
             data: pieData,
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                const value = pieData.datasets[0].data[tooltipItem.dataIndex];
+                                const percentage = ((value / totalStatusCount) * 100).toFixed(2);
+                                if (percentage === '0.00') return '';
+                                return `${tooltipItem.label}: ${value} (${percentage}%)`;
+                            }
+                        }
+                    },
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            let percentage = ((value / totalStatusCount) * 100).toFixed(2);
+                            if (percentage === '0.00') return '';
+                            return percentage + '%';
+                        },
+                        color: '#fff',
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
         };
 
         // Render Pie Chart
@@ -87,6 +114,13 @@
             ]
         };
 
+        // Calculate total count for each category
+        const totalCategoryCounts = labels.map(label =>
+            (categoryStatusCounts[label]['Good'] || 0) +
+            (categoryStatusCounts[label]['Repair'] || 0) +
+            (categoryStatusCounts[label]['Breakdown'] || 0)
+        );
+
         // Stacked Bar Chart Config
         const stackedBarConfig = {
             type: 'bar',
@@ -98,6 +132,21 @@
                     },
                     y: {
                         stacked: true,
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                const datasetLabel = tooltipItem.dataset.label;
+                                const value = tooltipItem.raw;
+                                const categoryIndex = tooltipItem.dataIndex;
+                                const total = totalCategoryCounts[categoryIndex];
+                                const percentage = ((value / total) * 100).toFixed(2);
+                                if (percentage === '0.00') return '';
+                                return `${datasetLabel}: ${value} (${percentage}%)`;
+                            }
+                        }
                     }
                 }
             }
