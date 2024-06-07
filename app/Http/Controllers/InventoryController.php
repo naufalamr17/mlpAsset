@@ -363,4 +363,43 @@ class InventoryController extends Controller
             ->get();
         return view('mlpasset.history', compact('userhist'));
     }
+
+    public function repair()
+    {
+        // $inventory = inventory::all();
+        // dd($inventory);
+        return view('mlpasset.repair');
+    }
+
+    public function inputrepair()
+    {
+        // $inventory = inventory::all();
+        // dd($inventory);
+        return view('mlpasset.inputrepair');
+    }
+
+    public function getInventoryData(Request $request)
+    {
+        $assetCode = $request->input('asset_code');
+        $inventory = Inventory::where('asset_code', $assetCode)->first();
+
+        if ($inventory) {
+            $data = [
+                'location' => $inventory->location, 
+                'asset_category' => $inventory->asset_category,
+                'asset_position_dept' => $inventory->asset_position_dept,
+                'asset_type' => $inventory->asset_type,
+                'description' => $inventory->description,
+                'serial_number' => $inventory->serial_number,
+                'acquisition_date' => $inventory->acquisition_date,
+                'useful_life' => $inventory->useful_life,
+                'acquisition_value' => $inventory->acquisition_value,
+                // Tambahkan data lain yang ingin Anda kembalikan
+            ];
+
+            return response()->json($data);
+        } else {
+            return response()->json(['error' => 'Inventaris tidak ditemukan.'], 404);
+        }
+    }
 }

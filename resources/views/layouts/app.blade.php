@@ -56,7 +56,7 @@
                                     <div class="px-3 py-2"><x-nav-link :href="route('inventory')" :active="request()->routeIs('inventory')">
                                             {{ __('Input Asset') }}
                                         </x-nav-link></a></div>
-                                    <div class="px-3 py-2"><x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard!!')">
+                                    <div class="px-3 py-2"><x-nav-link :href="route('repair_inventory')" :active="request()->routeIs('repair_inventory')">
                                             {{ __('Repair Asset') }}
                                         </x-nav-link></a></div>
                                     <div class="px-3 py-2"><x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard!!')">

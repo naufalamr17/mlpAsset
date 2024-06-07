@@ -40,6 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/inventory/{id}/edit', [InventoryController::class, 'edit'])->name('edit_inventory');
     Route::post('/inventory/{id}', [InventoryController::class, 'update'])->name('update_inventory');
     Route::get('/history_inventory', [InventoryController::class, 'history'])->name('history_inventory');
+    Route::get('/repair_inventory', [InventoryController::class, 'repair'])->name('repair_inventory');
+    Route::get('/input_repair', [InventoryController::class, 'inputrepair'])->name('input_repair');
+    Route::get('/get-inventory-data', [InventoryController::class, 'getInventoryData'])->name('get.inventory.data');
 });
 
 require __DIR__ . '/auth.php';
