@@ -128,6 +128,10 @@
             </main>
         </div>
     </div>
+
+    <footer class="bg-gray-200 text-center text-sm py-4">
+        &copy; 2024 PT. Makmur Lestari Primatama IT Department
+    </footer>
 </body>
 
 </html>
