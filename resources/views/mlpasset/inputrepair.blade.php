@@ -233,7 +233,7 @@
 
                                 <div>
                                     <x-input-label for="acquisition_value" :value="__('Nilai Perolehan')" />
-                                    <x-text-input id="acquisition_value" class="block mt-1 w-full" type="text" name="acquisition_value" :value="old('acquisition_value')" disabled/>
+                                    <x-text-input id="acquisition_value" class="block mt-1 w-full" type="text" name="acquisition_value" :value="old('acquisition_value')" disabled />
                                     <x-input-error :messages="$errors->get('acquisition_value')" class="mt-2" />
                                 </div>
 
@@ -263,31 +263,33 @@
                 // Ambil nilai yang dimasukkan ke dalam input asset_code
                 var assetCode = $(this).val();
 
-                // Lakukan permintaan AJAX untuk mendapatkan data inventaris berdasarkan kode aset
-                $.ajax({
-                    type: 'GET',
-                    url: '/get-inventory-data', // Ganti dengan URL yang benar sesuai dengan rute Anda
-                    data: {
-                        asset_code: assetCode
-                    },
-                    success: function(response) {
-                        // Isi input lainnya dengan data yang diterima dari permintaan AJAX
-                        $('#location').val(response.location);
-                        $('#asset_category').val(response.asset_category);
-                        $('#asset_position_dept').val(response.asset_position_dept);
-                        $('#asset_type').val(response.asset_type);
-                        $('#description').val(response.description);
-                        $('#serial_number').val(response.serial_number);
-                        $('#acquisition_date').val(response.acquisition_date);
-                        $('#useful_life').val(response.useful_life);
-                        $('#acquisition_value').val(response.acquisition_value);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText); // Log pesan kesalahan ke konsol
-                        // Atau tampilkan pesan kesalahan kepada pengguna
-                        alert('Terjadi kesalahan saat mengambil data inventaris. Silakan coba lagi.');
-                    }
-                });
+                if (assetCode.length >= 13) {
+                    // Lakukan permintaan AJAX untuk mendapatkan data inventaris berdasarkan kode aset
+                    $.ajax({
+                        type: 'GET',
+                        url: '/get-inventory-data', // Ganti dengan URL yang benar sesuai dengan rute Anda
+                        data: {
+                            asset_code: assetCode
+                        },
+                        success: function(response) {
+                            // Isi input lainnya dengan data yang diterima dari permintaan AJAX
+                            $('#location').val(response.location);
+                            $('#asset_category').val(response.asset_category);
+                            $('#asset_position_dept').val(response.asset_position_dept);
+                            $('#asset_type').val(response.asset_type);
+                            $('#description').val(response.description);
+                            $('#serial_number').val(response.serial_number);
+                            $('#acquisition_date').val(response.acquisition_date);
+                            $('#useful_life').val(response.useful_life);
+                            $('#acquisition_value').val(response.acquisition_value);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText); // Log pesan kesalahan ke konsol
+                            // Atau tampilkan pesan kesalahan kepada pengguna
+                            alert('Data tidak ditemukan. Silakan coba lagi.');
+                        }
+                    });
+                }
             });
         });
     </script>
