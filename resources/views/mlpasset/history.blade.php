@@ -120,11 +120,6 @@
                                 <div id="result"></div>
                             </div>
                         </div>
-                        <a href="{{ route('add_inventory') }}">
-                            <x-primary-button class="items-center justify-center text-white font-bold py-2 px-4 rounded">
-                                {{ __('Add Asset') }}
-                            </x-primary-button>
-                        </a>
                     </div>
                     <table id="inventoryTable" class="w-full table-auto">
                         <thead>
@@ -184,7 +179,10 @@
                         "orderable": false,
                         "targets": '_all'
                     } // Disable ordering on all other columns
-                ],"order": [[8, 'desc']],
+                ],
+                "order": [
+                    [8, 'desc']
+                ],
                 "dom": '<"top">rt<"bottom"ip><"clear">',
             });
 
