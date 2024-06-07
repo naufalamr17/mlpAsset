@@ -140,7 +140,7 @@
                                 <th class="px-4 py-2">{{ __('Serah Terima') }}</th>
                                 <th class="px-4 py-2">{{ __('User') }}</th>
                                 <th class="px-4 py-2">{{ __('Dept') }}</th>
-                                <th class="px-4 py-2">{{ __('Note') }}</th>
+                                <th class="px-4 py-2">{{ __('Remarks') }}</th>
                             </tr>
                         </thead>
                         <tbody>

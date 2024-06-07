@@ -262,7 +262,7 @@
                                 </div>
 
                                 <div>
-                                    <x-input-label for="note" :value="__('User Note')" />
+                                    <x-input-label for="note" :value="__('Remarks')" />
                                     <x-text-input id="note" class="block mt-1 w-full" type="text" name="note" :value="old('note')" />
                                     <x-input-error :messages="$errors->get('note')" class="mt-2" />
                                     <div class="flex items-center mt-2">
