@@ -15,19 +15,17 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body class="font-sans text-gray-900 antialiased bg-gray-100">
-    <div class="min-h-screen flex items-center justify-center">
-        <div class="flex flex-row bg-white shadow-md rounded-lg overflow-hidden w-full sm:max-w-6xl min-h-[70vh]">
-            <div class="flex flex-col items-start justify-center pl-6 ml-24 sm:pl-10 p-10 sm:w-1/2 bg-white"> <img src="{{ asset('img/mlpLogo.jpg') }}" alt="Application Logo" class="w-48 h-48 fill-current text-gray-500" />
+<body class="font-sans text-gray-900 antialiased">
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+        <img src="{{ asset('img/exa.jpg') }}" alt="Background Image" class="fixed top-0 left-0 w-full h-full object-cover z-0" style="filter: brightness(0.6);" />
+
+        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg z-10">
+            <div class="flex justify-center">
+                <img src="{{ asset('img/mlpLogo.jpg') }}" alt="Application Logo" class="w-20 h-20 fill-current text-gray-500 mb-2" />
             </div>
-            <div class="w-full mr-10 mt-11 mb-11 sm:w-1/2 px-6 py-4">
-                <div class="flex justify-center mb-4">
-                    <img src="{{ asset('img/mlpLogo.jpg') }}" alt="Application Logo" class="w-20 h-20 fill-current text-gray-500" />
-                </div>
-                <h1 class="text-3xl font-bold leading-tight text-center">Log in to your account</h1>
-                <p class="text-gray-400 mt-2 mb-4 text-center">Welcome back! Please enter your details.</p>
-                {{ $slot }}
-            </div>
+            <h1 class="text-3xl font-bold leading-tight text-center">Log in to your account</h1>
+            <p class="text-gray-400 mt-2 mb-4 text-center">Welcome back! Please enter your details.</p>
+            {{ $slot }}
         </div>
     </div>
 </body>
