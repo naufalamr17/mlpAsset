@@ -159,7 +159,7 @@
                                 @if($inv->acquisition_value == 0)
                                 <td>-</td>
                                 @else
-                                <td>{{ $inv->acquisition_value }}</td>
+                                <td>{{ number_format($inv->acquisition_value, 0, ',', '.') }}</td>
                                 @endif
                                 <?php
                                 $acquisitionDate = new DateTime($inv->acquisition_date);
