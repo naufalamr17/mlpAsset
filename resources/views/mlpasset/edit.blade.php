@@ -30,7 +30,7 @@
                             <div class="flex flex-col gap-6">
                                 <div>
                                     <x-input-label for="old_asset_code" :value="__('Kode Asset Lama')" />
-                                    <x-text-input id="old_asset_code" class="block mt-1 w-full" type="text" name="old_asset_code" :value="old('old_asset_code', $asset->old_asset_code)" required autofocus />
+                                    <x-text-input id="old_asset_code" class="block mt-1 w-full" type="text" name="old_asset_code" :value="old('old_asset_code', $asset->old_asset_code)" autofocus />
                                     <x-input-error :messages="$errors->get('old_asset_code')" class="mt-2" />
                                 </div>
 
@@ -62,7 +62,7 @@
 
                                 <div>
                                     <x-input-label for="asset_position_dept" :value="__('Asset Position')" />
-                                    <input id="asset_position_dept" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text" name="asset_position_dept" list="asset_position_list" value="{{ old('asset_type', $asset->asset_type) }}" required />
+                                    <input id="asset_position_dept" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text" name="asset_position_dept" list="asset_position_list" value="{{ old('asset_position_dept', $asset->asset_position_dept) }}" required />
                                     <datalist id="asset_position_list">
                                         <option value="Geology">Geology</option>
                                         <option value="R. HSE">R. HSE</option>
