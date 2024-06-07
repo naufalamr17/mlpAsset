@@ -30,7 +30,7 @@
                             <div class="flex flex-col gap-6">
                                 <div>
                                     <x-input-label for="old_asset_code" :value="__('Kode Asset Lama')" />
-                                    <x-text-input id="old_asset_code" class="block mt-1 w-full" type="text" name="old_asset_code" :value="old('old_asset_code')" required autofocus />
+                                    <x-text-input id="old_asset_code" class="block mt-1 w-full" type="text" name="old_asset_code" :value="old('old_asset_code')" autofocus />
                                     <x-input-error :messages="$errors->get('old_asset_code')" class="mt-2" />
                                 </div>
 

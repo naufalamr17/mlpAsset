@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
             $table->string('asset_code'); // Kode Aset
-            $table->string('old_asset_code'); // Kode Aset Lama
+            $table->string('old_asset_code')->nullable(); // Kode Aset Lama
             $table->string('pic_dept'); // PIC DEPT
             $table->string('location'); // LOCATION
             $table->string('asset_category'); // Kategori Aset

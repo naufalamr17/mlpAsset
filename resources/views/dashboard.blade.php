@@ -31,11 +31,11 @@
         const categoryStatusCounts = @json($categoryStatusCounts);
 
         // Pie Chart Data
-        const statusLabels = ['Good', 'Repair', 'Broken'];
+        const statusLabels = ['Good', 'Repair', 'Breakdown'];
         const statusColors = {
             Good: '#4CAF50', // Green
             Repair: '#FFC107', // Yellow
-            Broken: '#F44336' // Red
+            Breakdown: '#F44336' // Red
         };
 
         // Ensure the data and colors align with the status labels
@@ -64,7 +64,7 @@
         // Stacked Bar Chart Data
         const labels = Object.keys(categoryStatusCounts);
         const goodData = labels.map(label => categoryStatusCounts[label]['Good'] || 0);
-        const brokenData = labels.map(label => categoryStatusCounts[label]['Broken'] || 0);
+        const brokenData = labels.map(label => categoryStatusCounts[label]['Breakdown'] || 0);
         const repairData = labels.map(label => categoryStatusCounts[label]['Repair'] || 0);
 
         const stackedBarData = {
@@ -80,7 +80,7 @@
                     backgroundColor: '#FFC107'
                 },
                 {
-                    label: 'Broken',
+                    label: 'Breakdown',
                     data: brokenData,
                     backgroundColor: '#F44336'
                 },

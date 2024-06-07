@@ -24,7 +24,7 @@ class InventoryController extends Controller
     {
         // dd($request);
         $validatedData = $request->validate([
-            'old_asset_code' => 'required|string',
+            'old_asset_code' => 'nullable|string',
             'location' => 'required|string',
             'asset_category' => 'required|string',
             'asset_position_dept' => 'required|string',
@@ -217,7 +217,7 @@ class InventoryController extends Controller
     {
         // dd($request);
         $request->validate([
-            'old_asset_code' => 'required',
+            'old_asset_code' => 'nullable',
             'location' => 'required',
             'asset_category' => 'required',
             'asset_position_dept' => 'required',
