@@ -138,6 +138,7 @@
                                 <th class="px-4 py-2">{{ __('Serial') }}</th>
                                 <th class="px-4 py-2">{{ __('Tanggal Perolehan') }}</th>
                                 <th class="px-4 py-2">{{ __('Nilai Perolehan') }}</th>
+                                <th class="px-4 py-2">{{ __('Sisa Waktu Pakai (hari)') }}</th>
                                 <th class="px-4 py-2">{{ __('Location') }}</th>
                                 <th class="px-4 py-2">{{ __('Status') }}</th>
                                 <th class="px-4 py-2">{{ __('User') }}</th>
@@ -160,6 +161,24 @@
                                 @else
                                 <td>{{ $inv->acquisition_value }}</td>
                                 @endif
+                                <?php
+                                $acquisitionDate = new DateTime($inv->acquisition_date);
+                                $usefulLife = $inv->useful_life * 365; // Convert useful life from years to days
+                                $endOfUsefulLife = clone $acquisitionDate;
+                                $endOfUsefulLife->modify("+{$usefulLife} days");
+
+                                $currentDate = new DateTime();
+                                $interval = $currentDate->diff($endOfUsefulLife);
+
+                                if ($currentDate > $endOfUsefulLife) {
+                                    $remainingDays = -$interval->days; // Use negative value for overdue days
+                                } else {
+                                    $remainingDays = $interval->days;
+                                }
+
+                                $message = "{$remainingDays} hari";
+                                ?>
+                                <td>{{ $message }}</td>
                                 <td>{{ $inv->location }}</td>
                                 <td>{{ $inv->status }}</td>
                                 @if(isset($inv->user))
